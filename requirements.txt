@@ -1,0 +1,22 @@
+# Основной фреймворк и запуск тестов
+pytest
+pytest-xdist          # Для параллельного запуска (-n)
+
+# UI-автоматизация 
+playwright
+pytest-playwright     # Интеграция Playwright с Pytest
+
+# API-тестирование
+requests
+
+# Генерация данных 
+faker               
+
+# Отчетность
+allure-pytest  
+
+# Статический анализатор
+mypy     
+
+# Линтер
+ruff
