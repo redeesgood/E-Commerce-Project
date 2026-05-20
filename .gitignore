@@ -2,6 +2,7 @@
 venv/
 .venv/
 env/
+.env*
 
 # Кэш и временные файлы Python / Pytest
 __pycache__/
@@ -21,3 +22,7 @@ downloads/
 # Линтеры и статические анализаторы
 .mypy_cache/
 .ruff_cache/
+
+# Настройки редакторов кодаa
+.vscode/
+.idea/

@@ -21,3 +21,6 @@ mypy
 
 # Линтер
 ruff
+
+# Хранение ключей
+python-dotenv
