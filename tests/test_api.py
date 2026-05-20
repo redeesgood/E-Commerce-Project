@@ -1,15 +1,7 @@
 from faker import Faker
 from api.api_client import APIClient
 
-import os
-from dotenv import load_dotenv
-load_dotenv()
-
-def test_create_user_api():
-    api_key = os.getenv("REQRES_API_KEY")
-    assert api_key is not None, "API ключ не найден!"
-    
-    api = APIClient(api_key)
+def test_create_user_api(api: APIClient):
     fake = Faker('ru_RU')
     
     random_name = fake.name()
