@@ -8,6 +8,7 @@ pytest-playwright     # Интеграция Playwright с Pytest
 
 # API-тестирование
 requests
+types-requests
 
 # Генерация данных 
 faker               
