@@ -23,5 +23,30 @@ class APIClient:
         
         return response
     
+    def get_user(self, user_id: int) -> Response:
+        response = requests.get(
+            self.base_url + f"/users/{user_id}",
+            headers=self.headers)
+        
+        return response
     
+    def delete_user(self, user_id: int) -> Response:
+        response = requests.delete(
+            self.base_url + f"/users/{user_id}",
+            headers=self.headers)
+        
+        return response
     
+    def patch_user(self, user_id: int, name: str, job: str) -> Response:
+        payload = {
+            "name": name,
+            "job": job
+        }
+        
+        response = requests.patch(
+            self.base_url + f"/users/{user_id}",
+            json=payload,
+            headers=self.headers
+        )
+
+        return response
