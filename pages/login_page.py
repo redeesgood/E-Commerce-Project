@@ -1,4 +1,5 @@
 from playwright.sync_api import Page, Locator
+import allure 
 
 class LoginPage:
     def __init__ (self, page: Page) -> None:
@@ -10,12 +11,14 @@ class LoginPage:
 
         self.error_text = page.get_by_test_id("error")
         self.error_btn = page.get_by_test_id("error-button")
-        
+    
+    @allure.step("Вводим логин '{username}' и пароль, нажимаем Login")
     def login(self, username: str, password: str) -> None:
         self.username.fill(f"{username}")
         self.password.fill(f"{password}")
         self.login_btn.click()
         
+    @allure.step("Закрываем сообщение об ошибке")
     def close_error_message(self):
         self.error_btn.click()
         

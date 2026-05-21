@@ -1,4 +1,5 @@
 import pytest
+import allure
 from playwright.sync_api import Page, Playwright
 from typing import Generator
 from db.db_core import DBHelper
@@ -27,14 +28,15 @@ def api() -> Generator[APIClient, None, None]:
     
     yield api
     
-@pytest.fixture
+@pytest.fixture()
 def login_page(page: Page) -> Generator[LoginPage, None, None]:
     page.goto("https://www.saucedemo.com/")
     
     yield LoginPage(page)
-
+    
 # На странице SauceDemo атрибут называется data-test вместо data-testid
 # Учим Playwright находить data-test и заменять на data-testid
 @pytest.fixture(scope="session", autouse=True) 
 def set_test_id(playwright: Playwright) -> None:
     playwright.selectors.set_test_id_attribute("data-test")
+    
