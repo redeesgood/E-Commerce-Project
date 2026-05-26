@@ -37,14 +37,14 @@ def test_names_sort(inventory_page: InventoryPage):
     actual_names = inventory_page.get_all_names()
     expected_names = sorted(actual_names, reverse=True)
     
-    assert actual_names == expected_names, f"Сортировка Z-A не работает!"
+    assert actual_names == expected_names, "Сортировка Z-A не работает!"
     
     inventory_page.sort_by("az")
     
     actual_names = inventory_page.get_all_names()
     expected_names = sorted(actual_names, reverse=False)
     
-    assert actual_names == expected_names, f"Сортировка A-Z не работает!"
+    assert actual_names == expected_names, "Сортировка A-Z не работает!"
 
 @allure.feature("Каталог товаров")
 @allure.title("Проверка работы счётчика")

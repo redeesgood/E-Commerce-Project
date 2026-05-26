@@ -23,3 +23,4 @@ def test_unseccessful_login (login_page: LoginPage, username: str, password: str
     
     login_page.close_error_message()
     expect(login_page.error_text).not_to_be_visible()
+    

@@ -1,0 +1,52 @@
+from playwright.sync_api import Page, Locator
+import allure
+
+class CheckoutInformationPage:
+    def __init__ (self, page: Page) -> None:
+        self.page = page
+        
+        self.first_name: Locator = page.get_by_test_id("firstName")
+        self.last_name: Locator = page.get_by_test_id("lastName")
+        self.postal_code: Locator = page.get_by_test_id("postalCode")
+        
+        self.continue_btn: Locator = page.get_by_test_id("continue")
+        
+        self.cancel_btn: Locator = page.get_by_test_id("cancel")
+    
+    @allure.step('Нажимаем "Продолдижть"')
+    def to_overview(self) -> None:
+        self.continue_btn.click()
+    
+    @allure.step('Нажимаем "Отмена"')
+    def cancel(self) -> None:
+        self.cancel_btn.click()
+
+    @allure.step('Заполняем данные пользователя')
+    def fill_personal_info(self, first_name: str, last_name: str, postal_code: str):
+        self.first_name.fill(first_name)
+        self.last_name.fill(last_name)
+        self.postal_code.fill(postal_code)
+
+class CheckoutOverviewPage:
+    def __init__ (self, page: Page) -> None:
+        self.page = page
+        
+        self.finish_btn: Locator = page.get_by_test_id("finish")
+
+    @allure.step('Нажимаем "Завершить"')
+    def finish(self) -> None:
+        self.finish_btn.click()
+
+class CheckoutCompletePage:
+    def __init__(self, page: Page) -> None:
+        self.page = page
+        
+        self.back_home_btn: Locator = page.get_by_test_id("back-to-products")
+
+        self.complete_container: Locator = page.get_by_test_id("checkout-complete-container")
+        
+    @allure.step('Нажимаем "Вернуться Домой"')
+    def back_home(self) -> None:
+        self.back_home_btn.click()
+        
+    

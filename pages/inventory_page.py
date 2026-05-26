@@ -11,6 +11,8 @@ class InventoryPage:
         
         self.cart_badge: Locator = page.get_by_test_id("shopping-cart-badge")
         
+        self.cart_btn: Locator = page.get_by_test_id("shopping-cart-link")
+        
     @allure.step("Выбираем тип сортировки: {sort_option}")
     def sort_by(self, sort_option: str) -> None:
         self.sort_list.select_option(value=sort_option)
@@ -24,3 +26,7 @@ class InventoryPage:
     @allure.step("Получаем все названия товаров на странице")
     def get_all_names(self) -> list[str]:
         return self.page.get_by_test_id("inventory-item-name").all_inner_texts()
+    
+    @allure.step("Переходим в корзину")
+    def to_cart(self) -> None:
+        self.cart_btn.click()
