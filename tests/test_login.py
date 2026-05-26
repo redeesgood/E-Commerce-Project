@@ -17,7 +17,7 @@ def test_successful_login(page: Page, login_page: LoginPage):
     ("standard_user", "sec"), # Неверный пароль
     ("sec", "secret_sauce") # Неверный логин
 ])
-def test_unseccessful_login (page: Page, login_page: LoginPage, username: str, password: str):
+def test_unseccessful_login (login_page: LoginPage, username: str, password: str):
     login_page.login(username, password)
     expect(login_page.error_text).to_be_visible()
     
