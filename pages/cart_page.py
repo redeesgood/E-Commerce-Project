@@ -11,6 +11,7 @@ class CartPage:
         
         self.cart_badge: Locator = page.get_by_test_id("shopping-cart-badge")
 
+        self.inventory_item: Locator = page.get_by_test_id("inventory-item")
 
     @allure.step('Нажимаем "Отмена"')
     def to_continue_shopping(self) -> None:

@@ -32,11 +32,27 @@ class CheckoutOverviewPage:
         self.page = page
         
         self.finish_btn: Locator = page.get_by_test_id("finish")
-
+        self.inventory_item: Locator = page.get_by_test_id("inventory-item")
+        self.total_price: Locator = page.get_by_test_id("total-label")
+        self.item_price: Locator = page.get_by_test_id("subtotal-label")
+        self.tax_price: Locator = page.get_by_test_id("tax-label")
+        
     @allure.step('Нажимаем "Завершить"')
     def finish(self) -> None:
         self.finish_btn.click()
-
+    
+    @allure.step('Складываем стоимость товаров и налог')
+    def get_final_cost(self) -> str:
+        item_price: str = self.item_price.inner_text()
+        
+        tax_cost: float = float(item_price.replace("Item total: $", "")) * 0.08
+        rounded_tax_cost: str = f"{tax_cost:.2f}"
+        
+        final_cost: float = float(item_price.replace("Item total: $", "")) + float(rounded_tax_cost)
+        
+        return str(final_cost)
+        
+    
 class CheckoutCompletePage:
     def __init__(self, page: Page) -> None:
         self.page = page
