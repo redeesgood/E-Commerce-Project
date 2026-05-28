@@ -41,9 +41,11 @@ def test_full_checkout_flow(page: Page, inventory_page: InventoryPage):
     
     checkout_overview_page = CheckoutOverviewPage(page)
     checkout_overview_item = checkout_overview_page.inventory_item.first
+    
     overview_itemname = checkout_overview_item.get_by_test_id("inventory-item-name")
     overview_price = checkout_overview_item.get_by_test_id("inventory-item-price")
     overview_total_price = checkout_overview_page.total_price
+    
     final_price = checkout_overview_page.get_final_cost()
     
     expect(overview_itemname).to_have_text(first_item_name)

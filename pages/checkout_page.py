@@ -1,4 +1,5 @@
 from playwright.sync_api import Page, Locator
+from decimal import Decimal, ROUND_HALF_UP
 import allure
 
 class CheckoutInformationPage:
@@ -43,15 +44,17 @@ class CheckoutOverviewPage:
     
     @allure.step('Складываем стоимость товаров и налог')
     def get_final_cost(self) -> str:
-        item_price: str = self.item_price.inner_text()
+        raw_price = self.item_price.inner_text()
+        clean_price = raw_price.replace("Item total: $", "")
         
-        tax_cost: float = float(item_price.replace("Item total: $", "")) * 0.08
-        rounded_tax_cost: str = f"{tax_cost:.2f}"
+        item_price =  Decimal(clean_price)
         
-        final_cost: float = float(item_price.replace("Item total: $", "")) + float(rounded_tax_cost)
+        tax_rate = Decimal('0.08')
+        tax_cost = (item_price*tax_rate).quantize(Decimal('0.00'), rounding=ROUND_HALF_UP)
         
-        return str(final_cost)
+        final_cost = item_price + tax_cost
         
+        return f"{final_cost:.2f}"
     
 class CheckoutCompletePage:
     def __init__(self, page: Page) -> None:
