@@ -1,0 +1,41 @@
+name: Automated E2E & API Tests
+
+# Правила запуска: пайплайн срабатывает при пуше в ветки main или master
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build-and-test:
+    # Виртуальная машина, на которой все будет крутиться
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Скачивание кода репозитория
+      uses: actions/checkout@v4
+
+    - name: Настройка Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    - name: Установка зависимостей
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Установка браузеров для Playwright
+      run: python -m playwright install --with-deps chromium
+
+    - name: Проверка кода линтерами (Ruff & Mypy)
+      run: |
+        ruff check .
+        mypy .
+
+    - name: Запуск автотестов
+      # Передаем наш секретный ключ из настроек GitHub
+      env:
+        REQRES_API_KEY: ${{ secrets.REQRES_API_KEY }}
+      run: pytest tests/ -v
