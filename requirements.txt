@@ -24,3 +24,6 @@ ruff
 
 # Хранение ключей
 python-dotenv
+
+# Decimal   
+decimal
