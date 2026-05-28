@@ -13,6 +13,10 @@ class InventoryPage:
         
         self.cart_btn: Locator = page.get_by_test_id("shopping-cart-link")
         
+        self.burger_btn: Locator = page.locator("#react-burger-menu-btn")
+        
+        self.logout_btn: Locator = page.get_by_test_id("logout-sidebar-link")
+        
     @allure.step("Выбираем тип сортировки: {sort_option}")
     def sort_by(self, sort_option: str) -> None:
         self.sort_list.select_option(value=sort_option)
@@ -30,3 +34,8 @@ class InventoryPage:
     @allure.step("Переходим в корзину")
     def to_cart(self) -> None:
         self.cart_btn.click()
+        
+    @allure.step("Открываем боковое окно и выходим из аккаунта")
+    def logout(self) -> None:
+        self.burger_btn.click()
+        self.logout_btn.click()
