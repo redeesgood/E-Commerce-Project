@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  autotests:
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - ./allure-results:/app/allure-results
