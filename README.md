@@ -3,7 +3,7 @@
 Тестовый фреймворк для автоматизации E-commerce платформы (SauceDemo). Проект демонстрирует выстроенную архитектуру, работу с API, покрытие UI-слоя надежными сквозными (E2E) тестами и полную контейнеризацию
 
 ## 🛠 Технологический стек
-* **Язык:** Python 3.12
+* **Язык:** Python 3.11
 * **Тестовый фреймворк:** Pytest
 * **UI Автоматизация:** Playwright (Page Object Model)
 * **API Автоматизация:** Requests
@@ -11,7 +11,7 @@
 * **Генерация данных:** Faker
 * **Статический анализ:** Mypy, Ruff
 * **Отчетность:** Allure Report
-* **CI/CD & Инфраструктура:** GitHub Actions, Docker, Docker Compose
+* **CI/CD:** GitHub Actions, Docker, Docker Compose
 
 ## 🚀 Ключевые особенности (Features)
 * **Надежный UI-слой:** Использование паттерна Page Object Model (POM) и Web-First Assertions (Playwright `expect`).
